@@ -1,4 +1,5 @@
 from manim import *
+from manim.opengl import *
 
 class Precession(ThreeDScene):
 	def create_spin(self, phase: float, cone: Circle):
@@ -44,3 +45,16 @@ class Precession(ThreeDScene):
 		self.move_camera(phi=0)
 		self.wait()
 		# self.play(Rotate(spins_bottom, angle=2 * PI, about_point=[0, 0, 1]), run_time=4)
+
+
+class OpenGLIntro(Scene):
+    def construct(self):
+        hello_world = Tex("Hello World!").scale(3)
+        self.play(Write(hello_world))
+        self.play(
+            self.camera.animate.set_euler_angles(
+                theta=-10*DEGREES,
+                phi=50*DEGREES
+            )
+        )
+        self.play(self.camera.animate.set_euler_angles(theta=60*DEGREES))
